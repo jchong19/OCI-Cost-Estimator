@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OCI 견적 도우미</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <header class="hero">
+      <div class="brand"><span class="brand-mark">O</span><span>OCI 견적 도우미</span><em>APP</em><a href="./desktop.html" style="margin-left:auto;margin-right:42px;color:#ffb08a;text-decoration:none;font-size:10px;font-weight:500">PC 웹 보기 ↗</a></div>
+      <button class="icon-button" id="reset" aria-label="초기화">↺</button>
+      <p>기본 서비스 조합을 빠르게 비교하고, 고객별 할인 조건을 반영하세요.</p>
+      <div class="context-row">
+        <label>리전 <select id="region"><option>대한민국 중부 (춘천)</option><option>대한민국 북부 (서울)</option></select></label>
+        <label>기준 시간 <select id="hours"><option value="730">730시간 / 월</option><option value="744">744시간 / 월</option><option value="720">720시간 / 월</option></select></label>
+      </div>
+    </header>
+
+    <section class="summary-card">
+      <span>예상 월 비용 <button class="currency-pill" id="currency">USD</button></span>
+      <strong id="monthlyTotal">$0</strong>
+      <div class="summary-line"><span>연간 <b id="annualTotal">$0</b></span><span>3년 약정 <b id="termTotal">$0</b></span></div>
+      <div class="saving-line">3년 PAYG 대비 <strong id="savingTotal">$0</strong> 절감 <span id="effectiveDiscount">0%</span></div>
+    </section>
+
+    <section class="discount-card">
+      <div><span class="eyebrow">3년 약정 할인</span><strong id="discountLabel">25%</strong></div>
+      <input type="range" id="discount" min="0" max="55" value="25" />
+      <p>할인율은 고객의 Universal Credits / 협상 조건에 맞춰 조정하세요.</p>
+    </section>
+
+    <nav class="tabs" aria-label="서비스 분류">
+      <button class="tab active" data-tab="iaas">IaaS</button>
+      <button class="tab" data-tab="database">Oracle Base DB</button>
+      <button class="tab" data-tab="exacs">ExaCS</button>
+      <button class="tab" data-tab="autonomous">Autonomous</button>
+    </nav>
+
+    <section id="iaas" class="tab-panel active">
+      <div class="section-title"><div><span class="eyebrow">IaaS</span><h1>Compute와 기본 인프라</h1></div><span class="count-badge" id="iaasCount">0개 선택</span></div>
+      <div class="compare-head"><b>Compute Flex 비교</b><span>동일 사양 기준 · 단가/월 비용</span></div>
+      <div class="compute-grid" id="computeCards"></div>
+      <div class="section-label">스토리지 &amp; 네트워크</div>
+      <div id="iaasServices" class="service-list"></div>
+    </section>
+
+    <section id="database" class="tab-panel">
+      <div class="section-title"><div><span class="eyebrow">DATABASE</span><h1>Oracle Base Database</h1></div></div>
+      <p class="section-help">VM DB System 기준. 라이선스 포함(LI)과 BYOL을 빠르게 비교합니다.</p>
+      <div id="databaseServices" class="service-list"></div>
+    </section>
+
+    <section id="exacs" class="tab-panel">
+      <div class="section-title"><div><span class="eyebrow">EXADATA</span><h1>Exadata Cloud Service</h1></div></div>
+      <p class="section-help">Dedicated Infrastructure 기준의 인프라와 DB OCPU를 분리 산정합니다.</p>
+      <div id="exacsServices" class="service-list"></div>
+    </section>
+
+    <section id="autonomous" class="tab-panel">
+      <div class="section-title"><div><span class="eyebrow">AUTONOMOUS</span><h1>Autonomous Database</h1></div></div>
+      <p class="section-help">Serverless Autonomous AI Database의 ECPU와 저장소 기준입니다.</p>
+      <div id="autonomousServices" class="service-list"></div>
+    </section>
+
+    <section class="cost-breakdown">
+      <div class="section-title"><div><span class="eyebrow">BREAKDOWN</span><h1>월 비용 구성</h1></div><button class="text-button" id="download">견적 CSV</button></div>
+      <p class="section-help" id="quoteMeta"></p>
+      <div id="breakdown"></div>
+    </section>
+
+    <footer>가격 기준: Oracle Public Cloud Global Price List (2026-05) · USD · 세금 및 네트워크 Egress 제외<br><a href="https://www.oracle.com/cloud/pricing/" target="_blank" rel="noreferrer">공식 OCI 가격 확인 ↗</a></footer>
+  </main>
+  <div id="toast" role="status"></div>
+  <script src="./pricing-catalog.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>

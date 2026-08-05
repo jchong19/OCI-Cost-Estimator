@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>OCI 견적 도우미 | PC 웹</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./desktop.css">
+</head>
+<body>
+  <div class="shell">
+    <aside><a class="brand" href="./desktop.html"><i>O</i><span>OCI<br>견적 도우미</span></a><span class="mode">WEB DESKTOP</span>
+      <nav><a class="active" href="#overview">견적 개요</a><a href="#compute">Compute 비교</a><a href="#estimate">상세 견적</a></nav>
+      <div class="aside-note"><b>가격 카탈로그</b><span>Global Price List<br>2026-05 · USD</span><a href="https://www.oracle.com/cloud/pricing/" target="_blank" rel="noreferrer">공식 가격 확인 ↗</a></div>
+    </aside>
+    <main>
+      <header><div><span class="kicker">SALES ESTIMATE · KOREA</span><h1>OCI 고객 견적</h1><p>현장 논의에 맞춰 용량, 단가, 약정 할인율을 바로 반영합니다.</p></div><div class="header-actions"><a href="./index.html">모바일 앱 보기 ↗</a><button id="currency" type="button">USD</button><button id="csv">CSV 내보내기</button></div></header>
+      <section class="controls" aria-label="공통 견적 설정"><label>리전<select id="region"><option>대한민국 중부 (춘천)</option><option>대한민국 북부 (서울)</option></select></label><label>월 기준 시간<select id="hours"><option value="730">730시간</option><option value="744">744시간</option><option value="720">720시간</option></select></label><label class="discount-label">3년 약정 할인 <b id="discountText">25%</b><input id="discount" type="range" min="0" max="55" value="25"></label></section>
+      <p class="quote-meta" id="quoteMeta"></p>
+      <section id="overview" class="kpis"><article><span>예상 월 비용</span><strong id="monthly">$0</strong><small>선택된 SKU 합계</small></article><article><span>예상 연 비용</span><strong id="annual">$0</strong><small>월 비용 × 12</small></article><article class="accent"><span>3년 약정 비용</span><strong id="term">$0</strong><small id="termNote">할인 적용</small></article><article><span>3년 절감액</span><strong id="saving">$0</strong><small>PAYG 대비</small></article></section>
+      <section id="compute" class="panel"><div class="section-heading"><div><span class="kicker">COMPUTE FLEX</span><h2>AMD와 Intel, 동일 구성 비교</h2></div><p>4 OCPU / 32 GB / <span id="chartHours">730</span>시간 기준</p></div><div class="compute-layout"><div id="computeCards" class="compute-cards"></div><div class="chart-wrap"><h3>월 비용 비교</h3><div class="bar-chart" id="barChart" role="img" aria-label="AMD 및 Intel 월 비용 비교 막대 차트"></div><p class="chart-note" id="chartNote"></p></div></div></section>
+      <section id="estimate" class="panel"><div class="section-heading"><div><span class="kicker">ESTIMATE DETAIL</span><h2>서비스별 견적 내역</h2></div><p>체크한 항목만 총액에 반영됩니다.</p></div><div class="table-wrap"><table><thead><tr><th>포함</th><th>서비스</th><th>SKU / 단위</th><th>수량</th><th>기준 단가 (USD)</th><th>월 비용</th></tr></thead><tbody id="lines"></tbody><tfoot><tr><td colspan="5">월 총액</td><td id="tableTotal">$0</td></tr></tfoot></table></div></section>
+      <section class="notice"><b>견적 유의사항</b><span>세금, 네트워크 Egress·Support·Marketplace 비용은 별도입니다. 최종 제안 전 OCI Cost Estimator 및 계약/할인 조건으로 재확인하세요.</span></section>
+    </main>
+  </div>
+  <script src="./pricing-catalog.js"></script>
+  <script src="./desktop.js"></script>
+</body>
+</html>
