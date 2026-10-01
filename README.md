@@ -45,7 +45,8 @@ python3 -m http.server 8000
 - **서비스 선택**: Compute Flex(AMD E6 / Intel Standard4), Block/Object Storage, Network Egress, Base Database(LI/BYOL), Exadata Cloud Service, Autonomous Database
 - **수량·단가 직접 수정**: 고객 협상 단가나 사양에 맞춰 화면에서 바로 변경 (변경 내용은 저장되지 않으며 새로고침 시 초기화)
 - **공통 조건**: 리전, 월 기준 시간(720 / 730 / 744시간), 3년 약정 할인율(0–55%)
-- **통화 전환**: USD ↔ KRW (고정 참고 환율 사용)
+- **통화 전환**: USD ↔ KRW
+- **환율**: 기본값 FY27 `1 USD = ₩1,445.3692`. 상단 `기준 시간` 옆 입력란에서 수정한 뒤 ↻ 버튼(또는 Enter)을 누르면 원화 금액과 CSV가 다시 계산됩니다. 수정한 환율은 저장되지 않으며 새로고침하면 기본값으로 돌아갑니다.
 - **CSV 내보내기**: 선택 항목의 월/연/3년 약정 비용을 엑셀에서 열 수 있는 CSV(UTF-8 BOM)로 저장
   - 모바일: `oci-estimate.csv`, PC 웹: `oci-estimate-desktop.csv`
 
@@ -61,7 +62,7 @@ python3 -m http.server 8000
 | 3년 절감액 | `연 비용 × 3 − 3년 약정 비용` |
 
 - 모든 단가는 USD 기준이며, OCI Global Price List는 리전 간 동일 USD 단가를 사용하므로 리전 선택은 견적서 표기용입니다.
-- KRW 표시는 `PRICING_CATALOG_META.usdToKrw` 환율로 단순 환산합니다.
+- KRW 표시는 화면에 적용된 환율(기본값 `PRICING_CATALOG_META.usdToKrw`)로 단순 환산합니다.
 - 세금, Support, Marketplace 비용은 포함되지 않습니다.
 
 ## 가격 카탈로그 수정
@@ -69,7 +70,7 @@ python3 -m http.server 8000
 단가와 SKU는 **`pricing-catalog.js` 한 파일**에서 관리하며, 수정하면 모바일과 PC 웹에 동일하게 반영됩니다.
 
 ```js
-const PRICING_CATALOG_META = { updatedAt: '2026-05', usdToKrw: 1380 };
+const PRICING_CATALOG_META = { updatedAt: '2026-05', usdToKrw: 1445.3692, fxBasis: 'FY27' };
 const PRICING_CATALOG = {
   compute:    [ /* Compute Flex shape */ ],
   iaas:       [ /* 스토리지 · 네트워크 */ ],
@@ -93,7 +94,7 @@ const PRICING_CATALOG = {
 
 **가격 갱신 시 체크리스트**
 
-1. `PRICING_CATALOG_META.updatedAt`과 `usdToKrw`를 갱신합니다.
+1. `PRICING_CATALOG_META.updatedAt`을 갱신합니다. 회계연도가 바뀌면 `usdToKrw`와 `fxBasis`(화면 표시용, 예: `FY28`)도 함께 바꿉니다.
 2. 화면에 하드코딩된 가격 기준 문구도 함께 수정합니다.
    - `index.html` 하단 footer (`Global Price List (2026-05)`)
    - `desktop.html` 사이드바 `aside-note` (`2026-05 · USD`)

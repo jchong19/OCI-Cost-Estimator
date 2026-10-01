@@ -1,7 +1,7 @@
 // 단일 소스: 모바일(app.js)과 PC 웹(desktop.js)이 이 카탈로그를 함께 사용합니다.
 // 단가/SKU를 변경할 때는 이 파일 하나만 수정하면 두 화면에 동일하게 반영됩니다.
-// usdToKrw: 참고용 고정 환율. 실제 계약/청구 시점 환율로 주기적으로 갱신하세요.
-const PRICING_CATALOG_META = { updatedAt: '2026-05', usdToKrw: 1380 };
+// usdToKrw: 원화 환산 기본 환율(fxBasis 기준). 화면에서 수정 후 ↻ 버튼으로 재계산할 수 있으며, 회계연도가 바뀌면 여기서 갱신하세요.
+const PRICING_CATALOG_META = { updatedAt: '2026-05', usdToKrw: 1445.3692, fxBasis: 'FY27' };
 const PRICING_CATALOG = {
   compute: [
     {id:'e6', family:'AMD EPYC', name:'VM.Standard.E6.Flex', sub:'AMD E6 · Flexible VM', cpu:.03, mem:.002, ocpu:4, gb:32, on:true},
