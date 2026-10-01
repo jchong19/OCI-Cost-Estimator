@@ -2,7 +2,7 @@
 
 ## 가장 빠른 방법: PWA로 설치
 
-이 견적 도구는 브라우저 기반 앱입니다. 정적 웹 호스팅에 올린 뒤 `manifest.webmanifest`와 Service Worker를 추가하면 iPhone과 Android에서 홈 화면 앱처럼 설치할 수 있습니다. 로그인이나 앱스토어 심사가 필요 없는 영업용 배포에 가장 적합합니다.
+이 견적 도구는 브라우저 기반 앱이며, `manifest.webmanifest`와 Service Worker(`sw.js`)가 이미 포함되어 있어 iPhone과 Android에서 홈 화면 앱처럼 설치할 수 있습니다. 현재 배포 주소: https://jchong19.github.io/OCI-Cost-Estimator/ 로그인이나 앱스토어 심사가 필요 없는 영업용 배포에 가장 적합합니다.
 
 1. 소스 파일을 GitHub, Oracle Cloud Object Storage Static Website, Netlify 또는 Vercel에 배포합니다.
 2. HTTPS 주소를 만듭니다. PWA 설치는 HTTPS가 필요합니다.
@@ -26,7 +26,7 @@ PWA를 Capacitor로 감싸면 현재 HTML/CSS/JavaScript를 거의 그대로 iOS
 
 - 영업 현장 배포: PWA. 가격 카탈로그를 한 곳에서 갱신하고 즉시 전 영업에게 배포할 수 있습니다.
 - 오프라인 견적, 카메라/파일 공유, MDM 배포: Capacitor 네이티브 앱.
-- 실제 단가 갱신: 단가를 `app.js`, `desktop.js`에서 분리한 `pricing-catalog.json` 또는 내부 API로 관리합니다. 변경일, SKU, 리전, 통화, PAYG/BYOL을 함께 저장하고 최종 견적은 OCI Cost Estimator에서 재확인합니다.
+- 실제 단가 갱신: 단가는 `pricing-catalog.js` 한 파일에서 관리합니다(필요 시 내부 API로 전환). 변경일, SKU, 리전, 통화, PAYG/BYOL을 함께 저장하고 최종 견적은 OCI Cost Estimator에서 재확인합니다.
 
 ## iPhone에서 바로 보기 위한 임시 방법
 
