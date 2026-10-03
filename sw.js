@@ -1,7 +1,7 @@
 // 오프라인 지원용 Service Worker.
 // 네트워크 우선: 온라인이면 항상 최신 단가/화면을 받고, 오프라인일 때만 캐시를 사용한다.
 // 파일 목록이 바뀌면 CACHE 버전을 올리세요.
-const CACHE = 'oci-estimator-v2';
+const CACHE = 'oci-estimator-v3';
 const ASSETS = [
   './', './index.html', './desktop.html',
   './style.css', './desktop.css',

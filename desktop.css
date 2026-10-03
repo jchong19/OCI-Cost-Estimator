@@ -6,3 +6,4 @@
 .fx-input input{width:86px;border:0;background:transparent;font:500 11px 'DM Mono';color:var(--ink);padding:6px 0;outline:0}
 #fxReload{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:4px;width:28px;height:26px;font-size:14px;line-height:1;cursor:pointer}
 #fxReload.pending{background:var(--orange);border-color:var(--orange);color:#fff}
+.copyright{margin-top:22px;color:var(--muted);font-size:10px;text-align:center}

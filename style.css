@@ -7,3 +7,4 @@
 .fx-input input{width:82px;border:0;background:transparent;color:#fff;font:500 11px 'DM Mono';padding:6px 0;outline:0}
 #fxReload{border:1px solid #ffffff32;background:#ffffff16;color:#fff;border-radius:6px;width:28px;height:28px;font-size:15px;line-height:1;cursor:pointer}
 #fxReload.pending{background:var(--orange);border-color:var(--orange)}
+footer .copyright{display:block;margin-top:10px;padding-bottom:20px}
